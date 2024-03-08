@@ -1,0 +1,240 @@
+App: 37, com.firstrade.android
+ranking of the answer: 27/70, 7/70, result: 1.56%
+App: 38, com.firstrade.android
+ranking of the answer: 30/70, 7/70, result: 1.50%
+App: 104, com.firstrade.android
+ranking of the answer: 15/70, 7/70, result: 2.25%
+App: 106, com.firstrade.android
+ranking of the answer: 23/70, 7/70, result: 1.70%
+App: 109, com.firstrade.android
+ranking of the answer: 14/70, 7/70, result: 2.33%
+App: 131, com.firstrade.android
+ranking of the answer: 12/70, 7/70, result: 2.30%
+App: 162, com.firstrade.android
+ranking of the answer: 14/70, 7/70, result: 2.35%
+App: 170, com.firstrade.android
+ranking of the answer: 19/70, 7/70, result: 1.86%
+App: 252, com.firstrade.android
+ranking of the answer: 14/70, 7/70, result: 2.46%
+App: 260, com.firstrade.android
+ranking of the answer: 20/70, 7/70, result: 1.77%
+App: 88, com.maicoin.max
+ranking of the answer: 14/70, 6/70, result: 2.01%
+App: 96, com.maicoin.max
+ranking of the answer: 11/70, 6/70, result: 1.60%
+App: 100, com.maicoin.max
+ranking of the answer: 13/70, 6/70, result: 2.11%
+App: 171, com.maicoin.max
+ranking of the answer: 14/70, 6/70, result: 1.96%
+App: 208, com.maicoin.max
+ranking of the answer: 13/70, 6/70, result: 2.06%
+App: 218, com.maicoin.max
+ranking of the answer: 12/70, 6/70, result: 2.67%
+App: 223, com.maicoin.max
+ranking of the answer: 21/70, 6/70, result: 1.60%
+App: 257, com.maicoin.max
+ranking of the answer: 14/70, 6/70, result: 1.91%
+App: 277, com.maicoin.max
+ranking of the answer: 14/70, 6/70, result: 1.80%
+App: 301, com.maicoin.max
+ranking of the answer: 14/70, 6/70, result: 1.80%
+App: 40, com.fbs
+ranking of the answer: 11/70, 10/70, result: 2.04%
+App: 73, com.fbs
+ranking of the answer: 12/70, 10/70, result: 2.51%
+App: 139, com.fbs
+ranking of the answer: 13/70, 10/70, result: 2.61%
+App: 179, com.fbs
+ranking of the answer: 10/70, 10/70, result: 2.06%
+App: 183, com.fbs
+ranking of the answer: 13/70, 10/70, result: 2.64%
+App: 241, com.fbs
+ranking of the answer: 10/70, 10/70, result: 2.21%
+App: 247, com.fbs
+ranking of the answer: 10/70, 10/70, result: 2.28%
+App: 258, com.fbs
+ranking of the answer: 11/70, 10/70, result: 2.31%
+App: 269, com.fbs
+ranking of the answer: 3/70, 10/70, result: 1.69%
+App: 270, com.fbs
+ranking of the answer: 8/70, 10/70, result: 1.62%
+App: 10, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 19/70, 5/70, result: 1.60%
+App: 52, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.79%
+App: 53, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.31%
+App: 78, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 1.97%
+App: 111, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.60%
+App: 149, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 7/70, 5/70, result: 2.01%
+App: 163, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 7/70, 5/70, result: 2.59%
+App: 209, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.39%
+App: 221, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 7/70, 5/70, result: 1.73%
+App: 226, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.59%
+App: 235, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.78%
+App: 281, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 8/70, 5/70, result: 2.30%
+App: 297, com.google.android.apps.docs.editors.sheets
+ranking of the answer: 9/70, 5/70, result: 2.93%
+App: 71, pl.solidexplorer2
+ranking of the answer: 19/70, 20/70, result: 1.79%
+App: 160, pl.solidexplorer2
+ranking of the answer: 23/70, 20/70, result: 2.04%
+App: 191, pl.solidexplorer2
+ranking of the answer: 33/70, 20/70, result: 1.52%
+App: 39, tw.com.youbike.plus
+ranking of the answer: 2/70, 14/70, result: 2.27%
+App: 81, tw.com.youbike.plus
+ranking of the answer: 2/70, 14/70, result: 2.75%
+App: 97, tw.com.youbike.plus
+ranking of the answer: 1/70, 14/70, result: 1.92%
+App: 130, tw.com.youbike.plus
+ranking of the answer: 34/70, 14/70, result: 1.91%
+App: 206, tw.com.youbike.plus
+ranking of the answer: 23/70, 14/70, result: 2.49%
+App: 265, tw.com.youbike.plus
+ranking of the answer: 1/70, 14/70, result: 2.72%
+App: 282, tw.com.youbike.plus
+ranking of the answer: 4/70, 14/70, result: 2.52%
+App: 293, tw.com.youbike.plus
+ranking of the answer: 1/70, 14/70, result: 2.05%
+App: 15, com.easycard.wallet
+ranking of the answer: 3/70, 13/70, result: 1.63%
+App: 28, com.easycard.wallet
+ranking of the answer: 7/70, 13/70, result: 2.21%
+App: 133, com.easycard.wallet
+ranking of the answer: 43/70, 13/70, result: 0.09%
+App: 155, com.easycard.wallet
+ranking of the answer: 50/70, 13/70, result: 0.44%
+App: 229, com.easycard.wallet
+ranking of the answer: 42/70, 13/70, result: 0.74%
+App: 303, com.easycard.wallet
+ranking of the answer: 59/70, 13/70, result: 0.96%
+App: 6, org.telegram.messenger
+ranking of the answer: 13/70, 8/70, result: 1.71%
+App: 12, org.telegram.messenger
+ranking of the answer: 16/70, 8/70, result: 1.61%
+App: 18, org.telegram.messenger
+ranking of the answer: 17/70, 8/70, result: 1.67%
+App: 31, org.telegram.messenger
+ranking of the answer: 16/70, 8/70, result: 1.70%
+App: 34, org.telegram.messenger
+ranking of the answer: 13/70, 8/70, result: 2.31%
+App: 56, org.telegram.messenger
+ranking of the answer: 9/70, 8/70, result: 2.59%
+App: 79, org.telegram.messenger
+ranking of the answer: 14/70, 8/70, result: 1.68%
+App: 110, org.telegram.messenger
+ranking of the answer: 9/70, 8/70, result: 2.65%
+App: 117, org.telegram.messenger
+ranking of the answer: 9/70, 8/70, result: 2.32%
+App: 118, org.telegram.messenger
+ranking of the answer: 9/70, 8/70, result: 2.47%
+App: 144, org.telegram.messenger
+ranking of the answer: 8/70, 8/70, result: 2.71%
+App: 151, org.telegram.messenger
+ranking of the answer: 8/70, 8/70, result: 2.33%
+App: 212, org.telegram.messenger
+ranking of the answer: 8/70, 8/70, result: 2.27%
+App: 250, org.telegram.messenger
+ranking of the answer: 12/70, 8/70, result: 1.58%
+App: 196, com.google.android.apps.messaging
+ranking of the answer: 1/70, 19/70, result: 2.10%
+App: 287, com.google.android.apps.messaging
+ranking of the answer: 62/70, 19/70, result: 0.28%
+App: 46, com.twitter.android
+ranking of the answer: 17/70, 15/70, result: 2.47%
+App: 147, com.twitter.android
+ranking of the answer: 16/70, 15/70, result: 2.24%
+App: 200, com.twitter.android
+ranking of the answer: 30/70, 15/70, result: 1.55%
+App: 222, com.twitter.android
+ranking of the answer: 19/70, 15/70, result: 1.91%
+App: 284, com.twitter.android
+ranking of the answer: 25/70, 15/70, result: 1.79%
+App: 290, com.twitter.android
+ranking of the answer: 33/70, 15/70, result: 1.55%
+App: 43, com.google.android.apps.maps
+ranking of the answer: 5/70, 11/70, result: 2.46%
+App: 188, com.google.android.apps.maps
+ranking of the answer: 3/70, 11/70, result: 2.73%
+App: 253, com.google.android.apps.maps
+ranking of the answer: 4/70, 11/70, result: 2.42%
+App: 266, com.google.android.apps.maps
+ranking of the answer: 4/70, 11/70, result: 2.78%
+App: 35, app.revanced.android.youtube
+ranking of the answer: 14/70, 9/70, result: 2.05%
+App: 41, app.revanced.android.youtube
+ranking of the answer: 14/70, 9/70, result: 2.03%
+App: 75, app.revanced.android.youtube
+ranking of the answer: 11/70, 9/70, result: 2.27%
+App: 91, app.revanced.android.youtube
+ranking of the answer: 10/70, 9/70, result: 2.38%
+App: 124, app.revanced.android.youtube
+ranking of the answer: 8/70, 9/70, result: 2.52%
+App: 132, app.revanced.android.youtube
+ranking of the answer: 7/70, 9/70, result: 3.17%
+App: 137, app.revanced.android.youtube
+ranking of the answer: 9/70, 9/70, result: 2.78%
+App: 164, app.revanced.android.youtube
+ranking of the answer: 9/70, 9/70, result: 2.60%
+App: 174, app.revanced.android.youtube
+ranking of the answer: 9/70, 9/70, result: 2.43%
+App: 192, app.revanced.android.youtube
+ranking of the answer: 21/70, 9/70, result: 1.53%
+App: 210, app.revanced.android.youtube
+ranking of the answer: 11/70, 9/70, result: 1.77%
+App: 272, app.revanced.android.youtube
+ranking of the answer: 15/70, 9/70, result: 1.61%
+App: 296, app.revanced.android.youtube
+ranking of the answer: 10/70, 9/70, result: 2.41%
+App: 302, app.revanced.android.youtube
+ranking of the answer: 11/70, 9/70, result: 1.80%
+App: 59, com.google.android.calculator
+ranking of the answer: 26/70, 16/70, result: 2.23%
+App: 85, com.google.android.calculator
+ranking of the answer: 35/70, 16/70, result: 1.77%
+App: 176, com.google.android.calculator
+ranking of the answer: 37/70, 16/70, result: 1.74%
+App: 181, com.google.android.calculator
+ranking of the answer: 38/70, 16/70, result: 1.64%
+App: 271, com.google.android.calculator
+ranking of the answer: 41/70, 16/70, result: 1.58%
+App: 72, y_studio.ka5983.ptt2
+ranking of the answer: 26/70, 17/70, result: 2.29%
+App: 95, y_studio.ka5983.ptt2
+ranking of the answer: 22/70, 17/70, result: 1.86%
+App: 166, y_studio.ka5983.ptt2
+ranking of the answer: 28/70, 17/70, result: 2.22%
+App: 213, y_studio.ka5983.ptt2
+ranking of the answer: 21/70, 17/70, result: 1.76%
+App: 217, y_studio.ka5983.ptt2
+ranking of the answer: 19/70, 17/70, result: 1.65%
+App: 25, com.android.vending
+ranking of the answer: 31/70, 18/70, result: 1.66%
+App: 55, com.android.vending
+ranking of the answer: 21/70, 18/70, result: 1.70%
+App: 82, com.android.vending
+ranking of the answer: 23/70, 18/70, result: 2.26%
+App: 122, com.android.vending
+ranking of the answer: 19/70, 18/70, result: 2.13%
+App: 298, com.android.vending
+ranking of the answer: 21/70, 18/70, result: 2.52%
+App: 13, com.google.android.gm
+ranking of the answer: 12/70, 12/70, result: 2.30%
+App: 113, com.google.android.gm
+ranking of the answer: 9/70, 12/70, result: 1.80%
+App: 187, com.google.android.gm
+ranking of the answer: 10/70, 12/70, result: 2.50%
+App: 261, com.google.android.gm
+ranking of the answer: 11/70, 12/70, result: 2.40%
+App: 276, com.google.android.gm
+ranking of the answer: 11/70, 12/70, result: 2.33%
