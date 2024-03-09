@@ -3,6 +3,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import Input, LSTM, Dense, Embedding, Concatenate, Dropout
 import random
+import matplotlib.pyplot as plt
 
 
 def readcsv(filename):
@@ -44,6 +45,7 @@ def get_dataset_row(
 def create_training_dataset(
     app_ids,
     array,
+    app_frequency,
     indexes,
     app_items,
     data_weights,
@@ -73,7 +75,7 @@ def create_training_dataset(
         target.append(1)
         sample_weight.append(data_weights[i] * float(negative_samples) * app_weight)
 
-        # Negative sampling
+        # Random negative sampling
         for _ in range(negative_samples):
             random_app = np.random.randint(app_items)
             while random_app == app_ids[i]:
@@ -85,6 +87,26 @@ def create_training_dataset(
             target.append(0)
             sample_weight.append(data_weights[i] * app_weight)
 
+        # Popularity-based negative sampling(Seems useless or there are some bugs)
+
+        # other_apps = [i for i in range(app_items) if i != app_ids[i]]
+        # u = np.random.random((app_items))
+        # k = [0.0] * app_items
+        # for i in range(app_items):
+        #     if i == app_ids[i]:
+        #         continue
+        #     k[i] = u[i] ** (1 / app_frequency[i])
+        # for app in range(app_items):
+        #     print(f'app: {app}, frequency: {app_frequency[app]}, k: {k[app]}')
+        # other_apps.sort(key=lambda x: k[x], reverse=True)
+        # for negative_app in range(negative_samples):
+        #     print(f'negative app: {negative_app}, frequency: {app_frequency[negative_app]}')
+        #     data1.append(app_ids[i - length : i])
+        #     data2.append(array[i - length : i])
+        #     data3.append(array[i])
+        #     data4.append(negative_app)
+        #     target.append(0)
+        #     sample_weight.append(data_weights[i] * app_weight)
     return (
         [np.array(x) for x in (data1, data2, data3, data4)],
         np.array(target, dtype=np.float32),
@@ -114,7 +136,7 @@ def load_data(file):
     return app_ids, array, dict
 
 
-def train_model(data):
+def train_model(data, hyper_parameter):
 
     input_data, target, sample_weight = data
 
@@ -123,16 +145,23 @@ def train_model(data):
     x2 = Input(shape=(None, 7))
     x3 = Input(shape=(7,))
     x4 = Input(shape=())
-    embedding_layer = Embedding(300, 16)
+    embedding_layer = Embedding(100, hyper_parameter["embedding_dim"])
     embedding = embedding_layer(x1)
     concat1 = Concatenate()([embedding, x2])
     concat1 = Dense(32, activation="relu")(concat1)
-    concat1 = Dropout(0.3)(concat1)
-    lstm = LSTM(64, recurrent_dropout=0.3)(concat1)
+    concat1 = Dropout(0.5)(concat1)
+    lstm = LSTM(64, recurrent_dropout=0.5)(concat1)
     current_data_dense = Dense(8, activation="relu")(x3)
     target_embedding = embedding_layer(x4)
-    target_embedding = Dense(24, activation="relu")(target_embedding)
-    x = Concatenate()([lstm, current_data_dense, target_embedding])
+    target_embedding = Dense(8, activation="relu")(target_embedding)
+    toConcat = [target_embedding]
+    if hyper_parameter['past_data']:
+        toConcat.append(lstm)
+    if hyper_parameter['current_data']:
+        toConcat.append(current_data_dense)
+    x = Concatenate()(toConcat)
+    x = Dense(64, activation="relu")(x)
+    x = Dropout(0.5)(x)
     x = Dense(64, activation="relu")(x)
     x = Dropout(0.5)(x)
     x = Dense(32, activation="relu")(x)
@@ -143,7 +172,9 @@ def train_model(data):
 
     print(model.summary())
     model.compile(
-        optimizer="adam", loss="binary_crossentropy", weighted_metrics=["accuracy"]
+        optimizer=hyper_parameter["optimizer"],
+        loss=hyper_parameter["loss"],
+        weighted_metrics=["accuracy"],
     )
     print("\nfit:")
     print(
@@ -153,7 +184,13 @@ def train_model(data):
         input_data[3].shape,
         target.shape,
     )
-    model.fit(input_data, target, sample_weight=sample_weight, epochs=40)
+    model.fit(
+        input_data,
+        target,
+        sample_weight=sample_weight,
+        epochs=hyper_parameter["epochs"],
+        batch_size=hyper_parameter["batch_size"],
+    )
     return model
     """
     # test
@@ -188,17 +225,48 @@ def load_model(filename):
 
 
 if __name__ == "__main__":
+    hyper_parameter = {
+        "test_id": 3,
+        "length": 20,
+        'embedding_dim': 8,
+        'past_data': True,
+        'current_data': True,
+        "max_negative_sampling": 5,
+        "low_frequency_factor": -0.7,
+        "epochs": 20,
+        "batch_size": 64,
+        "optimizer": "adam",
+        "loss": "mse",
+    }
+
     app_ids, array, dict = load_data("usage database kennyfs.txt")
+
     print(dict)
     reversed_dict = {v: k for k, v in dict.items()}
 
     data_length = len(array)
     num_apps = len(dict)
     # Randomly choose indexes for training and test data
-    indexes = list(range(data_length))
+    exclude_social_media = False
+    if exclude_social_media:
+        indexes = [
+            i
+            for i in range(data_length)
+            if app_ids[i]
+            not in (
+                dict["com.twitter.android"],
+                dict["com.facebook.katana"],
+                dict["com.google.android.apps.messaging"],
+                dict["org.telegram.messenger"],
+            )
+        ]
+    else:
+        indexes = list(range(data_length))
+    random.seed("Smart-Launcher-ML")
     random.shuffle(indexes)
-    training_indexes = indexes[: int(data_length * 0.8)]
-    test_indexes = indexes[int(data_length * 0.8) :]
+    training_rows = int(len(indexes) * 0.9)
+    training_indexes = indexes[:training_rows]
+    test_indexes = indexes[training_rows:]
 
     print(f"Data rows: {data_length}\nNumber of apps: {num_apps}")
 
@@ -211,29 +279,80 @@ if __name__ == "__main__":
     for i, (app, frequency) in enumerate(tmp):
         print(f"{i+1}/{num_apps}", reversed_dict[app], f"{frequency*100:.2f}%")
 
-    app_weights = [app_frequency[i] ** (-0.7) for i in range(num_apps)]
+    app_weights = [
+        app_frequency[i] ** hyper_parameter["low_frequency_factor"]
+        for i in range(num_apps)
+    ]
     e = 2.718281828459045
-    data_weights = [e ** (i / data_length - 1) for i in range(data_length)]
+    # data_weights = [e ** ((i / data_length) / 3) for i in range(data_length)]
+    data_weights = [1.0 for i in range(data_length)]
     training_data = create_training_dataset(
         app_ids,
         array,
+        app_frequency,
         training_indexes,
         num_apps,
         data_weights,
         app_weights,
-        length=20,
-        negative_sampling_ratio=0.2,
-        max_negative_sampling=20,
+        length=hyper_parameter["length"],
+        negative_sampling_ratio=1.0,
+        max_negative_sampling=hyper_parameter["max_negative_sampling"],
     )
-    train = False
+    print(training_data[2])
+    train = True
     if train:
-        model = train_model(training_data)
-        save_model(model, "model.h5")
+        model = train_model(training_data, hyper_parameter)
+        # save_model(model, "model.h5")
     else:
         model = load_model("model.h5")
 
     print(model.summary())
 
+    # test
+    rankings = [[] for i in range(num_apps)]
+    for index in test_indexes:
+        print(f"App: {index}, {reversed_dict[app_ids[index]]}")
+        data, target = get_dataset_row(index, app_ids, array, num_apps)
+        result = model.predict(data)
+        tmp = list(zip(result, range(num_apps)))
+        tmp.sort(key=lambda x: x[0], reverse=True)
+        # find test_data_app_ids[i] in result, print the ranking and result
+        for i in range(len(tmp)):
+            if tmp[i][1] == app_ids[index]:
+                print(f"find at {i+1}")
+                rankings[app_ids[index]].append(i + 1)
+                break
+
+    dataToDraw = list(zip(range(num_apps), rankings, app_frequency))
+    filtered_data = [
+        (app, ranking, frequency)
+        for app, ranking, frequency in dataToDraw
+        if len(ranking) > 0
+    ]
+    filtered_data.sort(key=lambda x: x[2], reverse=True)
+    plot_ids, plot_rankings, plot_frequencies = zip(*filtered_data)
+    length = len(plot_ids)
+    plt.figure(figsize=(12, 6))
+    plt.boxplot(plot_rankings)
+    for i, id in enumerate(plot_ids):
+        plt.scatter(i + 1, id_to_rank[id], color="red")
+    plt.xticks(
+        range(1, length + 1),
+        [reversed_dict[i] for i in plot_ids],
+        rotation=90,
+    )
+    plt.xlabel("App Names")
+    plt.ylabel("Ranking")
+    plt.title("Ranking Distribution of Apps")
+    test_id = hyper_parameter["test_id"]
+    with open(f"hyper_parameter_{test_id}.txt", "w") as f:
+        for key, value in hyper_parameter.items():
+            if key != "test_id":
+                f.write(f"{key}: {value}\n")
+    plt.savefig(f'ranking_distribution_{test_id}.png')
+    plt.show()
+    # test low frequency apps
+    """
     test_data_app_ids = [app_ids[i] for i in test_indexes]
     low_frequency_apps = []
     low_frequency_indexes = []
@@ -249,11 +368,7 @@ if __name__ == "__main__":
                         if i >= 5 and app == app_id
                     ]
                 )
-    """
-    print(low_frequency_indexes)
-    for i in low_frequency_indexes:
-        print(reversed_dict[test_data_app_ids[i]])
-    """
+
     for index in low_frequency_indexes:
         print(f"App: {index}, {reversed_dict[test_data_app_ids[index]]}")
         data, target = get_dataset_row(index, app_ids, array, num_apps)
@@ -262,12 +377,6 @@ if __name__ == "__main__":
         # create a ranking of the results
         tmp = list(zip(result, range(num_apps)))
         tmp.sort(key=lambda x: x[0], reverse=True)
-        """
-        print("Ranking")
-        for i in range(len(tmp)):
-            print(f"{reversed_dict[tmp[i][1]]}: {tmp[i][0][0]}, {target[tmp[i][1]]}")
-        print()
-        """
         # find test_data_app_ids[i] in result, print the ranking and result
         for i in range(len(tmp)):
             if tmp[i][1] == test_data_app_ids[index]:
@@ -275,3 +384,4 @@ if __name__ == "__main__":
                     f"ranking of the answer: {i+1}/{num_apps}, {id_to_rank[test_data_app_ids[index]]}/{num_apps}, result: {tmp[i][0][0]*100:.2f}%"
                 )
                 break
+    """
