@@ -155,9 +155,9 @@ def train_model(data, hyper_parameter):
     target_embedding = embedding_layer(x4)
     target_embedding = Dense(8, activation="relu")(target_embedding)
     toConcat = [target_embedding]
-    if hyper_parameter['past_data']:
+    if hyper_parameter["past_data"]:
         toConcat.append(lstm)
-    if hyper_parameter['current_data']:
+    if hyper_parameter["current_data"]:
         toConcat.append(current_data_dense)
     x = Concatenate()(toConcat)
     x = Dense(64, activation="relu")(x)
@@ -206,8 +206,8 @@ def train_model(data, hyper_parameter):
     """
 
 
-def get_app_frequency(app_ids, array, app_dict):
-    data_length = len(array)
+def get_app_frequency(app_ids, app_dict):
+    data_length = len(app_ids)
     num_items = len(app_dict)
     app_frequency = np.zeros(num_items)
     for i in range(data_length):
@@ -226,12 +226,13 @@ def load_model(filename):
 
 if __name__ == "__main__":
     hyper_parameter = {
-        "test_id": 3,
+        "test_id": 0,
+        'exclude_social_media': False,
         "length": 20,
-        'embedding_dim': 8,
-        'past_data': True,
-        'current_data': True,
-        "max_negative_sampling": 5,
+        "embedding_dim": 8,
+        "past_data": True,
+        "current_data": True,
+        "max_negative_sampling": 20,
         "low_frequency_factor": -0.7,
         "epochs": 20,
         "batch_size": 64,
@@ -247,7 +248,7 @@ if __name__ == "__main__":
     data_length = len(array)
     num_apps = len(dict)
     # Randomly choose indexes for training and test data
-    exclude_social_media = False
+    exclude_social_media = hyper_parameter["exclude_social_media"]
     if exclude_social_media:
         indexes = [
             i
@@ -256,7 +257,6 @@ if __name__ == "__main__":
             not in (
                 dict["com.twitter.android"],
                 dict["com.facebook.katana"],
-                dict["com.google.android.apps.messaging"],
                 dict["org.telegram.messenger"],
             )
         ]
@@ -270,12 +270,12 @@ if __name__ == "__main__":
 
     print(f"Data rows: {data_length}\nNumber of apps: {num_apps}")
 
-    app_frequency = get_app_frequency(app_ids, array, dict)
+    app_frequency = get_app_frequency([app_ids[i] for i in indexes], dict)
     # Print app by frequency
     tmp = list(zip(range(num_apps), app_frequency))
     print(tmp)
     tmp.sort(key=lambda x: x[1], reverse=True)
-    id_to_rank = {tmp[i][0]: i for i in range(num_apps)}
+    id_to_rank = {tmp[i][0]: i + 1 for i in range(num_apps)}
     for i, (app, frequency) in enumerate(tmp):
         print(f"{i+1}/{num_apps}", reversed_dict[app], f"{frequency*100:.2f}%")
 
@@ -349,7 +349,7 @@ if __name__ == "__main__":
         for key, value in hyper_parameter.items():
             if key != "test_id":
                 f.write(f"{key}: {value}\n")
-    plt.savefig(f'ranking_distribution_{test_id}.png')
+    plt.savefig(f"ranking_distribution_{test_id}.png")
     plt.show()
     # test low frequency apps
     """
